@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  width: 500px;
+  border-radius: 10px;
+  background-image: linear-gradient(blue, white);
+}
+
+.button {
+  padding: 20px;
+  background-color: white;
+  color: balck;
+  font-size: 20px;
+}
