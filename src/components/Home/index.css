@@ -1,1 +1,17 @@
-/* Write your CSS here */
+.search {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: grey;
+  margin: 30px;
+}
+.page {
+  background-color: grey;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.anime-list {
+  list-style-type: none;
+}

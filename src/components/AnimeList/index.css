@@ -1,0 +1,14 @@
+.card1 {
+  border-radius: 8px;
+  color: white;
+  margin: 10px;
+  background-color: rgb(82, 54, 185);
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  text-decoration: none;
+}
+.card2 {
+  text-decoration: none;
+}
