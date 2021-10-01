@@ -1,0 +1,63 @@
+.anime-details {
+  color: white;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.945);
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  box-shadow: 2px;
+}
+.span1 {
+  color: black;
+  font-weight: bold;
+  margin-right: 10px;
+}
+.review-button {
+  background-color: skyblue;
+  padding: 10px;
+  color: white;
+  background-color: rgb(35, 107, 190);
+  border-radius: 5px;
+  color: white;
+  border-width: 0px;
+  padding: 10px;
+}
+.input-field {
+  height: 100px;
+  width: 50%;
+  background-color: white;
+  border-radius: 10px;
+  outline: none;
+  margin-bottom: 10px;
+}
+.form-review {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.rating {
+  color: yellow;
+  font-weight: bold;
+  margin: 15px;
+  margin-left: 0px;
+}
+.review {
+  color: blue;
+  font-weight: bold;
+  margin: 15px;
+  font-family: 'Roboto';
+  margin-left: 0px;
+}
+.input-box {
+  outline: none;
+  border-radius: 5px;
+  border-width: 0px;
+}
+.review-cont {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin-top: 15px;
+  border-radius: 10px;
+}

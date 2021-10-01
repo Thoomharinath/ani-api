@@ -1,0 +1,24 @@
+.list-review {
+  display: flex;
+  flex-direction: column;
+}
+.line {
+  width: 100%;
+  color: rgba(0, 0, 0, 0.76);
+}
+.rating-color {
+  color: blue;
+  font-weight: bold;
+}
+.dash {
+  color: red;
+  font-weight: bold;
+}
+.rating-num {
+  color: purple;
+  font-weight: bold;
+}
+.review-color {
+  color: rgba(0, 0, 0, 0.692);
+  font-weight: bold;
+}

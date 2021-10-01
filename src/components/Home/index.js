@@ -1,4 +1,6 @@
 import Loader from 'react-loader-spinner'
+
+import Cookies from 'js-cookie'
 import {Component} from 'react'
 import {BsSearch} from 'react-icons/bs'
 import AnimeComp from '../AnimeList'
@@ -15,9 +17,9 @@ const activeStatus = {
 class Home extends Component {
   state = {
     animeList: [],
-    genreSearch: '',
-    descSearch: '',
-    titleSearch: '',
+    genreSearch: 'Pirates',
+    descSearch: 'Monkey',
+    titleSearch: 'One Piece',
     status: '',
   }
 
@@ -49,35 +51,47 @@ class Home extends Component {
       seasonYear: each.season_year,
       count: each.episodes_count,
       id: each.id,
+      coverImage: each.cover_image,
     }))
     // console.log(data1)
     this.setState({status: activeStatus.success, animeList: data1})
   }
 
   getEmpty = () => {
-    const data1 = ['NO ANIME TO SHOW']
+    const data1 = []
     this.setState({animeList: data1, status: activeStatus.success})
   }
 
   getList = async () => {
     this.setState({status: activeStatus.progress})
-    const {titleSearch, genreSearch} = this.state
-    // console.log(empType)
-    // const token = Cookies.get('jwt_token')
-    const url = `https://api.aniapi.com/v1/anime?title=${titleSearch}&genres=${genreSearch}`
+    const {titleSearch, genreSearch, descSearch} = this.state
+    let genSearch = genreSearch[0].toUpperCase()
+    genSearch += genreSearch.slice(1)
 
-    const token =
+    let titleSearch2 = titleSearch[0].toUpperCase()
+    titleSearch2 += titleSearch.slice(1)
+
+    console.log(genSearch)
+    // const token = Cookies.get('jwt_token')
+    const url = `https://api.aniapi.com/v1/anime?title=${titleSearch2}&genres=${genSearch}&description=%${descSearch}%`
+
+    const JwtToken =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1NyIsIm5iZiI6MTYzMjgwNzk0NiwiZXhwIjoxNjM1Mzk5OTQ2LCJpYXQiOjE2MzI4MDc5NDZ9.tYK2jfL7lK-6IVPsD1NNGX3aSLIyoB077rq3LQDszJc'
+
+    Cookies.set('jwt_token', JwtToken, {
+      expires: 30,
+    })
+
     const options = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${JwtToken}`,
       },
       method: 'GET',
     }
 
     const response = await fetch(url, options)
     const data = await response.json()
-    // console.log(data)
+    console.log(data)
     if (response.ok === true) {
       if (data.status_code === 404) {
         this.getEmpty()
@@ -97,7 +111,16 @@ class Home extends Component {
     </div>
   )
 
-  onSuccess = animeList => animeList.map(each => <AnimeComp List={each} />)
+  onSuccess = animeList => {
+    if (animeList.length === 0) {
+      return (
+        <div className="no-content">
+          <h1>OOps! No Content Available</h1>
+        </div>
+      )
+    }
+    return animeList.map(each => <AnimeComp List={each} />)
+  }
 
   LoadingContent = () => {
     const {status, animeList} = this.state
@@ -112,6 +135,12 @@ class Home extends Component {
       default:
         return null
     }
+  }
+
+  logoutButton = () => {
+    const {history} = this.props
+    Cookies.remove('jwt_token')
+    history.replace('/')
   }
 
   render() {
@@ -170,6 +199,13 @@ class Home extends Component {
               <BsSearch className="search-icon" />
             </button>
           </div>
+          <button
+            type="button"
+            onClick={this.logoutButton}
+            className="logout-button"
+          >
+            LOGOUT
+          </button>
         </div>
         <ul className="anime-list">{this.LoadingContent()}</ul>
       </div>

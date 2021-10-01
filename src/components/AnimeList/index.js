@@ -4,17 +4,38 @@ import './index.css'
 const AnimeComp = props => {
   const {List} = props
   // console.log(props)
-  const {title, description, count, seasonYear, genre, id} = List
+  const {title, description, count, seasonYear, genre, id, coverImage} = List
   // console.log(title)
 
   return (
     <Link to={`/anime/${id}`} className="card2">
       <li className="card1">
-        <h1>{title}</h1>
-        <p>{description}</p>
-        <p>{count}</p>
-        <p>{seasonYear}</p>
-        <p>{genre}</p>
+        <div>
+          <h1>
+            <span className="span">Title:</span>
+            {title}
+          </h1>
+
+          <p>
+            <span className="span">Description:</span>
+            {description}
+          </p>
+          <p>
+            <span className="span">Count:</span>
+            {count}
+          </p>
+          <p>
+            <span className="span">SeasonYear:</span>
+            {seasonYear}
+          </p>
+          <p>
+            <span className="span">Genre:</span>
+            {genre}
+          </p>
+        </div>
+        <div>
+          <img src={coverImage} alt="anime" className="anime-image" />
+        </div>
       </li>
     </Link>
   )
